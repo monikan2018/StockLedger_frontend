@@ -1,0 +1,22 @@
+
+<thead>
+  <tr>
+    <th scope='col'>Name<th>
+    <th scope='col'>Type<th>
+    <th scope='col'>Exchange</th>
+    <th scope='col'>Quantity</th>
+    <th scope='col'>Date</th>
+    <th scope='col'>Price</th>
+{{#each transactions as |transaction|}}
+{{log transaction}}
+<tr data-id="{{transaction._id}}">
+  <td>{{transaction.name}}</td>
+  <td>{{transaction.transaction_type}}</td>
+  <td>{{transaction.exchange}}</td>
+  <td>{{transaction.qty}}</td>
+  <td>{{transaction.date}}</td>
+  <td>{{transaction.price}}</td>
+  <td><button type='button' id="btnUpdate" class="btn btn-secondary update-trans" data-toggle="modal" data-target=".bd-addNew-modal-lg">Update</button></td>
+  <td><button type='submit'class="btn btn-danger delete-trans">Delete</button></td>
+<tr>
+{{/each}}
