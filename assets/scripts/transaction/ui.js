@@ -10,7 +10,6 @@ const showTransactionTemplate = require('../templates/transaction-view.handlebar
     $('#addNewModal').modal('hide')
     $("#message").text('Successfully added a record to your log')
     store.transaction = response.transaction
-    console.log('transaction:',response)
     $("#form-create").trigger('reset')
 
   }
@@ -63,14 +62,12 @@ const showTransactionTemplate = require('../templates/transaction-view.handlebar
   //Handlebars implementation
 
   const indexSuccess = (data) =>{
-    console.log(data, 'data')
-      $("#message").text('Records in your log')
+    $("#message").text('Records in your log')
     const showTransactionHtml = showTransactionTemplate({transactions:data.transactions})
     $('.record').html(showTransactionHtml)
     $('#record').show()
   }
   const viewUpdateSuccess = (data) =>{
-    console.log(data, 'data')
     $("#message").text('View updated record in your log')
     const showTransactionHtml = showTransactionTemplate({transactions:data.transactions})
     $('.record').html(showTransactionHtml)
@@ -78,7 +75,6 @@ const showTransactionTemplate = require('../templates/transaction-view.handlebar
 
   }
   const showSuccess =function(response){
-    console.log(response,'showSuccess')
      $('#idInput').val(response.transaction._id)
      $('#nameUpdate').val(response.transaction.name)
      $('#typeUpdate').val(response.transaction.transaction_type)

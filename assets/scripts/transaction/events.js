@@ -18,7 +18,6 @@ const onCreate = function(event){
  const onDelete = function(event){
    event.preventDefault()
    const id = $(event.target).closest('tr').data('id')
-   console.log(id)
    api.destroy(id)
        .then(ui.deleteSuccess)
        .then(onViewUpdate)
@@ -31,8 +30,6 @@ const onCreate = function(event){
   //const id = $('#idInput').val()
   const formData = getFormFields(event.target)
   const id = formData.idInput
-  console.log(id,'onUpdate')
-  console.log(formData)
   api.update(id,formData)
         .then (ui.updateSuccess)
         .then (onViewUpdate)
@@ -56,7 +53,6 @@ const onCreate = function(event){
  const onViewOne = function(event){
    event.preventDefault()
    const id = $(event.target).closest('tr').data('id')
-   console.log(id, 'onViewOne')
    api.show(id)
        .then(ui.showSuccess)
        .catch(ui.showFailure)

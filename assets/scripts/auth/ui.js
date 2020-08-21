@@ -5,7 +5,7 @@ const store = require('../store')
 
 const signUpSuccess = function(response){
   $('#message').text("")
-  console.log(response)
+  //console.log(response)
   $('#message').text("Successful sign-up! Please Sign-in to create your personal stock ledger!")
 }
 const signUpFailure = function(){
@@ -25,7 +25,7 @@ const signInSuccess = function(response){
   $('#nav-sign-in').removeClass('nav-link ').addClass('nav-link disabled')
   $('#nav-sign-up').removeClass('nav-link').addClass('nav-link disabled')
   //Access to play game after you are signed-in
-   console.log(store.user.token)
+  // console.log(store.user.token)
   $('#idInput').val(store.user.token)
   $('#btnAddNew').removeClass('disabled').addClass('enabled')
   $('#btnViewAll').removeClass('disabled').addClass('enabled')
