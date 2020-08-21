@@ -12,9 +12,9 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-
+     <div class= 'container-fluid'>
       <!-- navigation bar for authenitication -->
-  <nav class="navbar navbar-default navbar-dark" style="background-color:#9ae5e5;" >
+    <nav class="navbar navbar-default navbar-dark mainNavBar">
         <div class="nav mx-auto">
            <h1>Stock Ledger</h1>
         </div>
@@ -36,162 +36,203 @@
                 <a id="nav-sign-out" class="nav-link disabled" aria-disabled="true" data-toggle="modal" data-target="#signOutModal"  href="#" >Sign-out</a>
               </li>
        </ul>
-  </nav>
-  <!--Modals-->
-<section class="unathenticated">
-   <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal" aria-hidden="true">
-    <div class =modal-dialog>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Sign up!</h5>
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-           </button>
+    </nav>
+  <!--Modals for authentication-->
+      <section class="unathenticated">
+         <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal" aria-hidden="true">
+          <div class =modal-dialog>
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Sign up!</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+             <div class="modal-body">
+                <form id="sign-up">
+                    <input name= "credentials[email]" class="form-control" id="sign-up-email" placeholder="Enter you email" type="email">
+                    <input name="credentials[password]" class="form-control" id="sign-up-password" placeholder="password" type="password">
+                    <input name="credentials[password_confirmation]" class="form-control" id="sign-up-confirm" placeholder="password" type="password">
+                  <button type="submit" class="btn btn-primary">Sign Up!</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+               </form>
+             </div>
+           </div>
+           </div>
+         </div>
+       </section>
+       <section class="authenicated-sign-in">
+         <div class="modal fade" id="signInModal" tabindex="-1"
+         role="dialog" aria-labelledby="signInModal" aria-hidden="true">
+          <div class=modal-dialog>
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title">Sign In!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <form id="sign-in">
+                  <input name="credentials[email]" class="form-control" placeholder="email" type="email">
+                  <input name="credentials[password]" class="form-control" placeholder='password' type="password">
+               <button type="submit" class="btn btn-primary">Sign In!</button>
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+             </form>
+          </div>
+         </div>
         </div>
-       <div class="modal-body">
-          <form id="sign-up">
-              <input name= "credentials[email]" class="form-control" id="sign-up-email" placeholder="Enter you email" type="email">
-              <input name="credentials[password]" class="form-control" id="sign-up-password" placeholder="password" type="password">
-              <input name="credentials[password_confirmation]" class="form-control" id="sign-up-confirm" placeholder="password" type="password">
-            <button type="submit" class="btn btn-primary">Sign Up!</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-         </form>
        </div>
-     </div>
-     </div>
-   </div>
- </section>
- <section class="authenicated-sign-in">
-   <div class="modal fade" id="signInModal" tabindex="-1"
-   role="dialog" aria-labelledby="signInModal" aria-hidden="true">
-    <div class=modal-dialog>
-     <div class="modal-content">
-       <div class="modal-header">
-         <h5 class="modal-title">Sign In!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+      </section>
+      <section class="authenicated-change-password">
+       <div class="modal fade" id="changePasswordModal" tabindex="-1"
+       role="dialog" aria-labelledby="changePasswordModal" aria-hidden="true">
+        <div class=modal-dialog>
+         <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" >Password change!</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+         <div class="modal-body">
+           <form id="change-password">
+             <input name="passwords[old]" class="form-control" placeholder="old password" type="password">
+             <input name="passwords[new]" class="form-control" placeholder='new password' type="password">
+            <button type="submit" class="btn btn-primary">Confirm!</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </form>
+         </div>
+        </div>
+       </div>
       </div>
-      <div class="modal-body">
-        <form id="sign-in">
-            <input name="credentials[email]" class="form-control" placeholder="email" type="email">
-            <input name="credentials[password]" class="form-control" placeholder='password' type="password">
-         <button type="submit" class="btn btn-primary">Sign In!</button>
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-       </form>
-    </div>
-   </div>
-  </div>
- </div>
-</section>
-<section class="authenicated-change-password">
- <div class="modal fade" id="changePasswordModal" tabindex="-1"
- role="dialog" aria-labelledby="changePasswordModal" aria-hidden="true">
-  <div class=modal-dialog>
-   <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" >Password change!</h5>
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-       </button>
-    </div>
-   <div class="modal-body">
-     <form id="change-password">
-       <input name="passwords[old]" class="form-control" placeholder="old password" type="password">
-       <input name="passwords[new]" class="form-control" placeholder='new password' type="password">
-      <button type="submit" class="btn btn-primary">Confirm!</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-    </form>
-   </div>
-  </div>
- </div>
-</div>
-</section>
-<section class="authenicated-sign-out">
-<div class="modal fade" id="signOutModal" tabindex="-1"
-role="dialog" aria-labelledby="signOutModal" aria-hidden="true">
-<div class =modal-dialog>
-  <div class="modal-content">
-   <div class="modal-header">
-     <h5 class="modal-title">Sign out!</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
-  <div class="modal-footer">
-     <button type="click" id='sign-out' class="btn btn-primary">Sign-out</button>
-     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
- </div>
-</div>
-</div>
-</div>
-</section>
-<section class='msgheading' id="message">
-<div class="row" >
-<div class='col-md-6 offset-md-3'>
-  <p>Sign-up to log your tradings</p></div>
-</div>
-</section>
-<div class="container">
-  <div class="row">
-    <div class="col col-11">
-      <div class="bg-info clearfix disabled" id="viewBar" >
-        <p class="float-left"></p>
-        <button type="button" id="btnAddNew" class="btn btn-success btn-md float-right" data-toggle="modal" data-target=".bd-addNew-modal-lg">Add New
-        </button>
-        <button type="button" id="btnViewAll" class="btn btn-primary btn-md float-right">View All
-        </button>
+      </section>
+      <section class="authenicated-sign-out">
+      <div class="modal fade" id="signOutModal" tabindex="-1"
+      role="dialog" aria-labelledby="signOutModal" aria-hidden="true">
+      <div class =modal-dialog>
+        <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title">Sign out!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-footer">
+           <button type="click" id='sign-out' class="btn btn-primary">Sign-out</button>
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+       </div>
       </div>
-      <div id="record" class="record"></div>
-   </div>
+      </div>
+      </div>
+      </section>
+      <!-- <div class='container' id="viewBar">--->
+      <div class="row">
+        <div class="col col-12">
+            <div class="bg-info clearfix" id="crudId">
+              <p class="float-left offset-sm-2" id="message" ></p>
+              <button type="button" id="btnAddNew" class="btn btn-success btn-md float-right disabled" data-toggle="modal" data-target=".bd-addNew-modal-lg"><span class='glyphicon glyphicon-plus'>Add New</span>
+              </button>
+              <button type="button" id="btnViewAll" class="btn btn-primary btn-md float-right disabled">View All
+              </button>
+            </div>
+            <div id="record" class="record"></div>
+         </div>
+             <!--Modal for AddNew button-->
+             <!-- Modal -->
+        <div class="modal fade bd-addNew-modal-lg" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addNewModalLabel">Add a record</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+            <div class="modal-body">
+              <!--form to create-->
+              <form id="form-create">
+                <div class="form-group">
+                  <label>Name:</label>
+                  <input name="transaction[name]" type="text" class"form-control" id="nameInput" placeholder="name">
+               </div>
+               <div class="form-group">
+                  <label>Type:</label>
+                  <input name="transaction[transaction_type]" type="text" class"form-control" id="typeInput" placeholder="Buy">
+                </div>
+                <div class="form-group">
+                  <label>Exchange:</label>
+                  <input name="transaction[exchange]" type="text" class"form-control" id="exchangeInput" placeholder="NYSE">
+                </div>
+                <div class="form-group">
+                  <label>Quantity:</label>
+                  <input name="transaction[quantity]" min='0' type="number" class"form-control" id="qtyInput" placeholder="20">
+                </div>
+                <div class="form-group">
+                  <label>Date:</label>
+                  <input name="transaction[date]" type="date" class"form-control" id="dateInput" placeholder="12/12/2020">
+                </div>
+                <div class="form-group">
+                  <label>Price:</label>
+                  <input name="transaction[price]" type="number" class"form-control" id="priceInput" placeholder="20.00">
+                </div>
+                  <button name="ConfirmForm" type="submit" class="btn btn-success">Confirm</button>
+                  <button name="CancelForm" type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
+                  <button name="ResetForm" type="reset" onclick='this.form.reset();'class="btn btn-primary">Clear</button>
+              </form>
+           </div>
+         </div>
+        </div>
+      </div>
        <!--Modal for AddNew button-->
        <!-- Modal -->
-  <div class="modal fade bd-addNew-modal-lg" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+      <div class="modal fade bd-update-modal-lg" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updatModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addNewModalLabel">Add a record</h5>
+          <h5 class="modal-title" id="updateModalLabel">Update a record</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
       <div class="modal-body">
-        <!--form to create-->
-        <form id="form-create-update" class="form-create-update">
+        <!--form to update-->
+        <form id="form-update">
+            <input name="idInput" id="idInput" type='hidden'>
           <div class="form-group">
             <label>Name:</label>
-            <input name="transaction[name]" type="text" class"form-control" id="nameInput" placeholder="name">
+            <input name="transaction[name]" type="text" class"form-control" id="nameUpdate" placeholder="name">
          </div>
          <div class="form-group">
             <label>Type:</label>
-            <input name="transaction[transaction_type]" type="text" class"form-control" id="typeInput" placeholder="Buy">
+            <input name="transaction[transaction_type]" type="text" class"form-control" id="typeUpdate" placeholder="Buy">
           </div>
           <div class="form-group">
             <label>Exchange:</label>
-            <input name="transaction[exchange]" type="text" class"form-control" id="exchangeInput" placeholder="NYSE">
+            <input name="transaction[exchange]" type="text" class"form-control" id="exchangeUpdate" placeholder="NYSE">
           </div>
           <div class="form-group">
             <label>Quantity:</label>
-            <input name="transaction[quantity]" type="number" class"form-control" id="qtyInput" placeholder="20">
+            <input name="transaction[quantity]" min='0' type="number" class"form-control" id="qtyUpdate" placeholder="20">
           </div>
           <div class="form-group">
             <label>Date:</label>
-            <input name="transaction[date]" type="date" class"form-control" id="dateInput" placeholder="NYSE">
+            <input name="transaction[date]" type="text" class"form-control textbox-n" id="dateUpdate" onfocus="(this.type='date')" onfocusout="(this.type='text')" placeholder="12/20/2020">
           </div>
           <div class="form-group">
             <label>Price:</label>
-            <input name="transaction[price]" type="number" class"form-control" id="priceInput" placeholder="20.00">
+            <input name="transaction[price]" type="number" class"form-control" id="priceUpdate" placeholder="20.00">
           </div>
             <button name="ConfirmForm" type="submit" class="btn btn-success">Confirm</button>
             <button name="CancelForm" type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
             <button name="ResetForm" type="reset" onclick='this.form.reset();'class="btn btn-primary">Clear</button>
         </form>
-     </div>
-   </div>
-  </div>
- </div>
- </div>
- </div>
-</div>
-</body>
-</html>
+      </div>
+      </div>
+      </div>
+      </div>
+       </div>
+       </div>
+      </div>
+      </body>
+      </html>

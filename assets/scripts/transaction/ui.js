@@ -1,52 +1,100 @@
+import moment from 'moment'
 const store = require('../store')
-
-const createSuccess =function(response){
-  // if sucessfully added
-  $("#message").text('Success to add record to your log')
-  store.transaction = response.transaction
-  console.log('transaction:',response)
-  $("#trans-create").trigger('reset');
-}
-
-const createFailure = function(){
-  $("#message").text('Failed to add record to your log')
-}
-
-const deleteSuccess = function(){
-    $("#message").text('Record deleted from your log')
-}
-const deleteFailure = function(){
-  $("#message").text('Failed to delete record to your log')
-}
-
-// const indexSuccess = function(response){
-// }
-const indexFailure = function(){
-  $("#message").text('Failed to show records in your log')
-}
 const showTransactionTemplate = require('../templates/transaction-view.handlebars')
-
-const indexSuccess = (data) =>{
-    $("#message").text('Records in your log')
-  console.log(data)
-  const showTransactionHtml = showTransactionTemplate({transactions:data.transactions})
-  $('.record').html(showTransactionHtml)
-}
-
-const showSuccess =function(response){
-   $("#message").text(response.transaction)
-   $('#nameInput').val(response.transaction.name)
-   $('#typeInput').val(response.transaction.transaction_type)
-   $('#exchangeInput').val(response.transaction.exchange)
-   $('#qtyInput').val(response.transaction.quantity)
-   $('#dateInput').val(response.transaction.date)
-   $('#priceInput').val(response.transaction.price)
-}
+  const eventTrans = require('./events')
 
 
-module.exports ={
+
+  const createSuccess =function(response){
+    // if sucessfully added
+    $('#addNewModal').modal('hide')
+    $("#message").text('Successfully added a record to your log')
+    store.transaction = response.transaction
+    console.log('transaction:',response)
+    $("#form-create").trigger('reset')
+
+  }
+
+  const createFailure = function(){
+    $('#addNewModal').modal('hide')
+    $("#message").text('Failed to add record to your log')
+    $('#message').css('color','#CC0000')
+    setTimeout(function(){
+        $('#message').css('color','black')
+    },2000)
+  }
+
+  const updateSuccess= function(){
+    $('#updateModal').modal('hide')
+    $("#message").text('Record updated!')
+    $('#form-update').trigger('reset')
+  }
+
+  const updateFailure = function(){
+    $('#updateModal').modal('hide')
+    $("#message").text('Failed to update record.')
+    $('#message').css('color','#CC0000')
+    setTimeout(function(){
+        $('#message').css('color','black')
+    },2000)
+  }
+
+  const deleteSuccess = function(event){
+      $("#message").text('Record deleted from your log')
+  }
+
+  const deleteFailure = function(){
+    $("#message").text('Failed to delete record to your log')
+    $('#message').css('color','#CC0000')
+    setTimeout(function(){
+        $('#message').css('color','black')
+    },2000)
+  }
+
+  // const indexSuccess = function(response){
+  // }
+  const indexFailure = function(){
+    $("#message").text('Failed to show records in your log')
+    $('#message').css('color','#CC0000')
+    setTimeout(function(){
+        $('#message').css('color','black')
+    },2000)
+  }
+  //Handlebars implementation
+
+  const indexSuccess = (data) =>{
+    console.log(data, 'data')
+      $("#message").text('Records in your log')
+    const showTransactionHtml = showTransactionTemplate({transactions:data.transactions})
+    $('.record').html(showTransactionHtml)
+    $('#record').show()
+  }
+  const viewUpdateSuccess = (data) =>{
+    console.log(data, 'data')
+    $("#message").text('View updated record in your log')
+    const showTransactionHtml = showTransactionTemplate({transactions:data.transactions})
+    $('.record').html(showTransactionHtml)
+    $('#record').show()
+
+  }
+  const showSuccess =function(response){
+    console.log(response,'showSuccess')
+     $('#idInput').val(response.transaction._id)
+     $('#nameUpdate').val(response.transaction.name)
+     $('#typeUpdate').val(response.transaction.transaction_type)
+     $('#exchangeUpdate').val(response.transaction.exchange)
+     $('#qtyUpdate').val(response.transaction.quantity)
+     let value = moment(response.transaction.date).add(1, 'day').format('L')
+     $('#dateUpdate').val(value)
+     $('#priceUpdate').val(response.transaction.price)
+  }
+
+  module.exports ={
   createSuccess,
   createFailure,
+  updateSuccess,
+  updateFailure,
+  viewUpdateSuccess,
   deleteSuccess,
   deleteFailure,
   indexSuccess,

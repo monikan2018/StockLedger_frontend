@@ -14,3 +14,8 @@ require('./assets/scripts/app.js')
 
 // styles
 require('./assets/styles/index.scss')
+
+//moment
+let Handlebars = require('handlebars');
+let MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);

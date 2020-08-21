@@ -6,16 +6,18 @@ const store = require('../store')
 const signUpSuccess = function(response){
   $('#message').text("")
   console.log(response)
-  $('#message').text("Successful sign-up! Please Sign-in to play")
+  $('#message').text("Successful sign-up! Please Sign-in to create your personal stock ledger!")
 }
 const signUpFailure = function(){
   $('#message').text("Incorrect Username or Password.")
-
+  $('#message').css('color','#CC0000')
+  setTimeout(function(){
+      $('#message').css('color','black')
+  },2000)
 }
 const signInSuccess = function(response){
-  $('#message').text('Successful sign-in!')
+  $('#message').text('You have successful signed-in!')
   store.user = response.user
-  console.log('store:', store)
   $('#signInModal').modal('hide')
 //Disable sign-up and sign-in and enable password-change and sign out
   $('#nav-change-password').removeClass('nav-link disabled').addClass('nav-link')
@@ -25,9 +27,16 @@ const signInSuccess = function(response){
   //Access to play game after you are signed-in
    console.log(store.user.token)
   $('#idInput').val(store.user.token)
+  $('#btnAddNew').removeClass('disabled').addClass('enabled')
+  $('#btnViewAll').removeClass('disabled').addClass('enabled')
+
 }
 const signInFailure = function(){
   $('#message').text("Sign-in failed!")
+  $('#message').css('color','#CC0000')
+  setTimeout(function(){
+      $('#message').css('color','black')
+  },2000)
 }
 const pwChangeSuccess = function(response){
   $('#message').text("Password changed!")
@@ -35,6 +44,10 @@ const pwChangeSuccess = function(response){
 
 const pwChangeFailure = function(){
   $('#message').text("Password change failed!")
+  $('#message').css('color','#CC0000')
+  setTimeout(function(){
+      $('#message').css('color','black')
+  },2000)
 }
 
 const signOutSuccess = function(){
@@ -45,11 +58,18 @@ const signOutSuccess = function(){
   $('#nav-sign-out').removeClass('nav-link').addClass('nav-link disabled')
   $('#nav-sign-in').removeClass('nav-link disabled').addClass('nav-link ')
   $('#nav-sign-up').removeClass('nav-link disabled').addClass('nav-link')
-  //hide the board
+  //hide the viewBar
+  $('#btnAddNew').removeClass('enabled').addClass('disabled')
+  $('#btnViewAll').removeClass('enabled').addClass('disabled')
+  $('#record').hide()
 }
 const signOutFailure = function(){
   $('#signOutModal').modal('hide')
   $('#message').text("Sign out Failed")
+  $('#message').css('color','#CC0000')
+  setTimeout(function(){
+      $('#message').css('color','black')
+  },2000)
 
 }
 
