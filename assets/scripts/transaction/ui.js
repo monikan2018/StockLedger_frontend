@@ -68,7 +68,7 @@ const showTransactionTemplate = require('../templates/transaction-view.handlebar
     $('#record').show()
   }
   const viewUpdateSuccess = (data) =>{
-    $("#message").text('View updated record in your log')
+    $("#message").text('Updated Log!')
     const showTransactionHtml = showTransactionTemplate({transactions:data.transactions})
     $('.record').html(showTransactionHtml)
     $('#record').show()
