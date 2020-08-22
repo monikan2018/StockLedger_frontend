@@ -79,7 +79,6 @@ const showTransactionTemplate = require('../templates/transaction-view.handlebar
   }
   const getCountSuccess = (data) =>{
     let totalRecords = data.transactions.length
-    console.log(totalRecords)
     $("#total_trans").text(` You have ${totalRecords} transactions
       in your portfolio!`)
   }
