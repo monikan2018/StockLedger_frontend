@@ -7,6 +7,7 @@ const signUpSuccess = function(response){
   $('#message').text("")
   //console.log(response)
   $('#message').text("Successful sign-up! Please Sign-in to create your personal stock ledger!")
+  $('#sign-up').trigger('reset')
 }
 const signUpFailure = function(){
   $('#message').text("Incorrect Username or Password.")
@@ -14,6 +15,7 @@ const signUpFailure = function(){
   setTimeout(function(){
       $('#message').css('color','black')
   },2000)
+  $('#sign-up').trigger('reset')
 }
 const signInSuccess = function(response){
   $('#message').text('You have successful signed-in!')
@@ -29,7 +31,7 @@ const signInSuccess = function(response){
   $('#idInput').val(store.user.token)
   $('#btnAddNew').removeClass('disabled').addClass('enabled')
   $('#btnViewAll').removeClass('disabled').addClass('enabled')
-
+  $('#sign-in').trigger('reset')
 }
 const signInFailure = function(){
   $('#message').text("Sign-in failed!")
@@ -37,6 +39,7 @@ const signInFailure = function(){
   setTimeout(function(){
       $('#message').css('color','black')
   },2000)
+  $('#sign-in').trigger('reset')
 }
 const pwChangeSuccess = function(response){
   $('#message').text("Password changed!")
@@ -48,6 +51,7 @@ const pwChangeFailure = function(){
   setTimeout(function(){
       $('#message').css('color','black')
   },2000)
+  $('#change-password').trigger('reset')
 }
 
 const signOutSuccess = function(){
@@ -70,7 +74,6 @@ const signOutFailure = function(){
   setTimeout(function(){
       $('#message').css('color','black')
   },2000)
-
 }
 
 

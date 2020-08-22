@@ -14,7 +14,6 @@ const index = function() {
   })
 }
 const create = function(formData){
-  console.log("entering here")
   return $.ajax({
     headers:{
       Authorization: 'Bearer ' + store.user.token
