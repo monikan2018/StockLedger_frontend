@@ -1,10 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
-
+@import './variables.scss';
 // @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
 body{
 font-family: 'Nanum Myeongjo', serif;
-background-color: 	#f6f3e1;
+background-color: $primary-bg;
 }
 
 
@@ -16,14 +16,13 @@ background-color: 	#f6f3e1;
    visibility: visible;
   }
 
-
 table{
   width: 100%;
-  background: #E6E7E8;
+  background: $table-bg;
 }
 
 table, th, td{
-  border: 1px solid lightgrey;
+  border: 1px solid $table-border;
   border-collapse: collapse;
 }
 
@@ -33,16 +32,12 @@ th,td{
 }
 
 .mainNavBar{
-  background-color: #a9c8bc;
-  color: Black;
+  background-color: $navbar-bg;
+  color: $navbar-text;
 }
 .nav-link{
-  color: black;
+  color: $navbar_text;
 
-}
-
-.failure{
-  background-color: pink;
 }
 .msgheading{
    height: 5vh;
@@ -50,7 +45,7 @@ th,td{
    font-size: 2vh;
    text-align: center;
 }
-#message {
+#message, #total_trans {
   height:5vh;
   text-align: justify;
   font-size: 1.2rem;

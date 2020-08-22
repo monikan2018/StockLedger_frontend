@@ -1,11 +1,9 @@
 'use strict'
 const store = require('../store')
-
-
+const trans_events = require('../transaction/events')
 
 const signUpSuccess = function(response){
   $('#message').text("")
-  //console.log(response)
   $('#message').text("Successful sign-up! Please Sign-in to create your personal stock ledger!")
   $('#sign-up').trigger('reset')
 }
@@ -18,15 +16,16 @@ const signUpFailure = function(){
   $('#sign-up').trigger('reset')
 }
 const signInSuccess = function(response){
-  $('#message').text('You have successful signed-in!')
+  $('#total_trans').show()
+  $('#message').text('Successfully signed-in: ')
   store.user = response.user
+  trans_events.onGetCount()
   $('#signInModal').modal('hide')
 //Disable sign-up and sign-in and enable password-change and sign out
   $('#nav-change-password').removeClass('nav-link disabled').addClass('nav-link')
   $('#nav-sign-out').removeClass('nav-link disabled').addClass('nav-link')
   $('#nav-sign-in').removeClass('nav-link ').addClass('nav-link disabled')
   $('#nav-sign-up').removeClass('nav-link').addClass('nav-link disabled')
-  //Access to play game after you are signed-in
   // console.log(store.user.token)
   $('#idInput').val(store.user.token)
   $('#btnAddNew').removeClass('disabled').addClass('enabled')
@@ -66,6 +65,10 @@ const signOutSuccess = function(){
   $('#btnAddNew').removeClass('enabled').addClass('disabled')
   $('#btnViewAll').removeClass('enabled').addClass('disabled')
   $('#record').hide()
+  $('#total_trans').hide()
+  setTimeout(function(){
+      $('#message').text('')
+  },800)
 }
 const signOutFailure = function(){
   $('#signOutModal').modal('hide')

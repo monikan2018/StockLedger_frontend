@@ -11,7 +11,7 @@ const onCreate = function(event){
   api.create(formData)
        .then(ui.createSuccess)
        .then(onViewUpdate)
-        .catch(ui.createFailure)
+       .catch(ui.createFailure)
  }
 
 //to delete record
@@ -49,6 +49,14 @@ const onCreate = function(event){
        .then(ui.viewUpdateSuccess)
        .catch(ui.viewUpdateFailure)
  }
+
+// to get transaction count
+const onGetCount = function(){
+  api.index()
+      .then(ui.getCountSuccess)
+      .catch(ui.getCountFailure)
+}
+
 // to get single record
  const onViewOne = function(event){
    event.preventDefault()
@@ -73,5 +81,6 @@ module.exports = {
   onDelete: onDelete,
   onViewOne: onViewOne,
   onUpdate: onUpdate,
-  addHandleBars: addHandleBars
+  addHandleBars: addHandleBars,
+  onGetCount: onGetCount
 }

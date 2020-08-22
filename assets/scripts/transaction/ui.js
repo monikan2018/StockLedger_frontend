@@ -1,17 +1,16 @@
 import moment from 'moment'
 const store = require('../store')
 const showTransactionTemplate = require('../templates/transaction-view.handlebars')
-  const eventTrans = require('./events')
+
 
 
 
   const createSuccess =function(response){
     // if sucessfully added
     $('#addNewModal').modal('hide')
-    $("#message").text('Successfully added a record to your log')
+    $("#message").text('Successfully added Record: ')
     store.transaction = response.transaction
     $("#form-create").trigger('reset')
-
   }
 
   const createFailure = function(){
@@ -25,7 +24,7 @@ const showTransactionTemplate = require('../templates/transaction-view.handlebar
 
   const updateSuccess= function(){
     $('#updateModal').modal('hide')
-    $("#message").text('Record updated!')
+    $("#message").text('Record updated: ')
     $('#form-update').trigger('reset')
   }
 
@@ -39,7 +38,7 @@ const showTransactionTemplate = require('../templates/transaction-view.handlebar
   }
 
   const deleteSuccess = function(event){
-      $("#message").text('Record deleted from your log')
+      $("#message").text('Record deleted: ')
   }
 
   const deleteFailure = function(){
@@ -62,18 +61,32 @@ const showTransactionTemplate = require('../templates/transaction-view.handlebar
   //Handlebars implementation
 
   const indexSuccess = (data) =>{
-    $("#message").text('Records in your log')
+    totalRecords(data)
     const showTransactionHtml = showTransactionTemplate({transactions:data.transactions})
     $('.record').html(showTransactionHtml)
     $('#record').show()
   }
   const viewUpdateSuccess = (data) =>{
-    $("#message").text('Updated Log!')
+    $("#message").text('Updated Log: ')
     const showTransactionHtml = showTransactionTemplate({transactions:data.transactions})
     $('.record').html(showTransactionHtml)
     $('#record').show()
-
+    totalRecords(data)
   }
+  function totalRecords (data) {
+    let totalRecords = data.transactions.length
+    $("#total_trans").text(` You have ${totalRecords} transactions in your portfolio!`)
+  }
+  const getCountSuccess = (data) =>{
+    let totalRecords = data.transactions.length
+    console.log(totalRecords)
+    $("#total_trans").text(` You have ${totalRecords} transactions
+      in your portfolio!`)
+  }
+  const getCountFailure = (data) =>{
+    $("#message").text('Failed to get transactions count')
+  }
+
   const showSuccess =function(response){
      $('#idInput').val(response.transaction._id)
      $('#nameUpdate').val(response.transaction.name)
@@ -95,5 +108,7 @@ const showTransactionTemplate = require('../templates/transaction-view.handlebar
   deleteFailure,
   indexSuccess,
   indexFailure,
-  showSuccess
+  showSuccess,
+  getCountSuccess,
+  getCountFailure
 }
